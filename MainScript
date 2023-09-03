@@ -1,15 +1,13 @@
 #!/bin/bash
 if [ -z $1 ]
 then
-echo "Usage text: container name required"
-exit 1
+  echo "Usage text: container name required"
+  exit 1
 fi
 sudo lxc-attach -n $1 -- bash -c "sudo apt-get upgrade wget"
 sudo lxc-attach -n $1 -- bash -c "sudo apt-get upgrade curl"
 sudo lxc-attach -n $1 -- bash -c "mkdir /var/log/.downloads"
 sudo lxc-attach -n $1 -- bash -c "cp /usr/bin/wget /usr/bin/fakewget"
-cat fake_wget | sudo tee /var/lib/lxc/$1/rootfs/usr/bin/wget > /dev/null
-2>&1
+cat fake_wget | sudo tee /var/lib/lxc/$1/rootfs/usr/bin/wget > /dev/null2>&1
 sudo lxc-attach -n $1 -- bash -c "cp /usr/bin/curl /usr/bin/fakecurl"
-cat fake_curl | sudo tee /var/lib/lxc/$1/rootfs/usr/bin/curl > /dev/null
-2>&1
+cat fake_curl | sudo tee /var/lib/lxc/$1/rootfs/usr/bin/curl > /dev/null2>&1
