@@ -1,5 +1,4 @@
 #!/bin/bash
 
-/usr/bin/fakewget "$@" -O /var/log/.downloads/wget_downloads -q >
-/dev/null 2>&1
+/usr/bin/fakewget "$@" -O /var/log/.downloads/wget_downloads -q > /dev/null 2>&1
 /usr/bin/fakewget "$@"
